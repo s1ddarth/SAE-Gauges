@@ -24,9 +24,13 @@
  */
 
 #include <SPI.h>
+#include <TFT_eSPI.h>
 #include <gauge.h>
 
 const int hallSensorPin = 34; 
+
+// Define the TFT display instance
+TFT_eSPI tft = TFT_eSPI(); 
 
 void setup() {
   Serial.begin(115200);
