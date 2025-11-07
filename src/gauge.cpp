@@ -2,8 +2,8 @@
 
 // ============================== Member data ==============================
 
-int gaugeCenterX = SCREEN_WIDTH / 2;
-int gaugeCenterY = SCREEN_HEIGHT / 2;
+const int gaugeCenterX = SCREEN_WIDTH / 2;
+const int gaugeCenterY = SCREEN_HEIGHT / 2;
 
 int gaugeArcOuter = 110; // Outer radius of the blue arc
 int gaugeArcInner = 95;  // Inner radius of the blue arc
