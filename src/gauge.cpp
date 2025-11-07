@@ -1,6 +1,6 @@
 #include <gauge.h>
 
-// ==========
+// ============================== Member data ==============================
 
 int gaugeCenterX = SCREEN_WIDTH / 2;
 int gaugeCenterY = SCREEN_HEIGHT / 2;
@@ -15,7 +15,7 @@ int needleLength = 85;     // Needle is short, does NOT overlap ticks or arc
 int needlePivotRadius = 8; // Center pivot
 
 int textRadius = 70; // Radius for numbers
-// ==========
+
 
 // Speed settings
 int maxSpeed = 240; // Max speed for the gauge
@@ -26,6 +26,8 @@ int oldSpeed = 0;
 int startAngle = 135;
 int endAngle = 45;
 int totalAngle = 360 - startAngle + endAngle;
+
+// ============================== END: Member data ==============================
 
 float mapSpeedToAngle(int speed)
 {
@@ -38,9 +40,7 @@ float mapSpeedToAngle(int speed)
   return angle;
 }
 
-// =========================================================================
-// FUNCTION to draw the static gauge elements
-// =========================================================================
+/** Draws the static gauge elements */
 void drawGauge()
 {
   // Draw the main gauge arc (as a series of thick lines)
@@ -86,9 +86,9 @@ void drawGauge()
   tft.drawString("KM/H", gaugeCenterX, gaugeCenterY + 40);
 }
 
-// =========================================================================
-// FUNCTION to draw the needle
-// =========================================================================
+/**
+ * This function draws and animates the needle
+ */
 void drawNeedle(int speed, uint16_t color)
 {
   float angle = mapSpeedToAngle(speed);
