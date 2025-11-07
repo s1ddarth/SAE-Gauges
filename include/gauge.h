@@ -15,21 +15,6 @@
 
 extern TFT_eSPI tft;
 
-// Constants for gauge geometry and colors
-extern const int gaugeCenterX;
-extern const int gaugeCenterY;
-extern const int gaugeArcOuter;
-extern const int gaugeArcInner;
-extern const int tickOuter;
-extern const int tickInner;
-extern const int needleLength;
-extern const int needlePivotRadius;
-extern const int textRadius;
-
-extern const int maxSpeed;
-extern const int startAngle;
-extern const int endAngle;
-
 // Function prototypes
 float mapSpeedToAngle(int speed);
 void drawGauge();
