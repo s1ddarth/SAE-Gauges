@@ -27,7 +27,7 @@
 #include <TFT_eSPI.h>
 #include <gauge.h>
 
-const int hallSensorPin = 34; 
+const int hallSensorPin = 10; 
 
 // Define the TFT display instance
 TFT_eSPI tft = TFT_eSPI(); 
