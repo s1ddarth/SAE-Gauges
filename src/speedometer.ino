@@ -27,7 +27,13 @@
 #include <TFT_eSPI.h>
 #include <gauge.h>
 
-const int hallSensorPin = 10; 
+const int hallSensorPin = 4;
+
+#define TFT_SCLK 36
+#define TFT_MOSI 35
+#define TFT_CS   10
+#define TFT_DC    9
+#define TFT_RST   8
 
 // Define the TFT display instance
 TFT_eSPI tft = TFT_eSPI(); 
@@ -51,9 +57,12 @@ void setup() {
 }
 
 void loop() {
-
   int sensorValue = analogRead(hallSensorPin);
+  
+  Serial.print("Hall effect sensor reading: ");
+  Serial.println(sensorValue);
+  
   drawSpeedText(sensorValue); 
 
-  delay(100); // Pause at max speed
+  delay(1000); // Pause at max speed
 }
