@@ -8,13 +8,11 @@
 #define TFT_HEIGHT 240
 
 // SPI pins
-#define TFT_MOSI 11
-#define TFT_MISO -1   // Not used by GC9A01
-#define TFT_SCLK 9
-#define TFT_CS   15
-#define TFT_DC   14
-#define TFT_RST  16
-#define TFT_BL   -1   // Backlight pin not connected
+#define TFT_SCLK 36
+#define TFT_MOSI 35
+#define TFT_CS   10
+#define TFT_DC    9
+#define TFT_RST   8
 
 // Optional settings
 #define SPI_FREQUENCY  40000000  // 40 MHz SPI
