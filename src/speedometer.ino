@@ -7,22 +7,15 @@ const int hallSensorPin = 4;
 // Define the TFT display instance
 TFT_eSPI tft = TFT_eSPI(); 
 
-void setup() {
+void setup(){
   Serial.begin(115200);
-  Serial.println("GC9A01 Speedometer Test v2");
-
-  // Initialize the TFT display
+  delay(1000);
+  Serial.println("STARTING");
+  SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
   tft.init();
-  tft.setRotation(0); 
-  
-  // Set text datum to Middle Center for easy centering
-  tft.setTextDatum(MC_DATUM); 
+  Serial.println("TFT INITIALIZED");
+  tft.fillScreen(TFT_WHITE);
 
-  tft.fillScreen(GAUGE_BG_COLOR);
-  pinMode(hallSensorPin, INPUT);
-
-  // Draw the static parts of the gauge
-  drawGauge();
 }
 
 void loop() {
@@ -30,8 +23,6 @@ void loop() {
   
   Serial.print("Hall effect sensor reading: ");
   Serial.println(sensorValue);
-  
-  drawSpeedText(sensorValue); 
 
   delay(1000); // Pause at max speed
 }
