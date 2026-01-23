@@ -5,7 +5,8 @@ A speedometer application for the SPARKLEIOT XH-S3E microcontroller with serial 
 ## Hardware Setup
 
 ### Board
-- **Device:** SPARKLEIOT XH-S3E (ESP32-S3 based)
+- **Microcontroller:** SPARKLEIOT XH-S3E (ESP32-S3 based)
+- **Carrier Board:** ESP32-S3 WROOM Core Board (WiFi/Bluetooth, 4MB Flash, USB-C)
 - **Development Environment:** VSCode + PlatformIO
 
 ### USB Connection
@@ -79,6 +80,33 @@ build_flags =
 - TFT display output (SPI-based, currently commented out)
 - Real-time serial monitoring
 - Speedometer gauge visualization
+- RGB LED control via addressable Neopixel LED
+
+## Hardware: LED Control
+
+The ESP32-S3 WROOM board includes two types of LEDs:
+
+### Power Indicator LED (Red)
+- **Status:** Always on when board is powered
+- **Controllable:** No (hardwired to power supply)
+- Indicates board is receiving USB power
+
+### Addressable RGB LED (Neopixel WS2812B)
+- **GPIO Pin:** 48
+- **Controllable:** Yes
+- **Library:** Requires Adafruit NeoPixel library
+
+### Using the RGB LED
+
+Add the Adafruit NeoPixel library to `platformio.ini`:
+
+```ini
+lib_deps =
+    bodmer/TFT_eSPI@^2.5.43
+    adafruit/Adafruit NeoPixel@^1.12.0
+```
+
+**Important:** Do not use `digitalWrite()` for the RGB LED—it requires the NeoPixel library for proper PWM control.
 
 ## Troubleshooting
 
@@ -107,9 +135,11 @@ build_flags =
 - The TFT display configuration requires SPI pins to be correctly mapped; see User_Setup.h
 - Sensor pin configuration for the Hall effect sensor is currently commented out (pin 4)
 - The application initializes at 115200 baud with a 1-second startup delay
+- The RGB LED on GPIO 48 is addressable (WS2812B) and requires the Adafruit NeoPixel library
 
 ## Resources
 
 - [ESP32-S3 Documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/)
 - [PlatformIO Documentation](https://docs.platformio.org/)
 - [Arduino Framework](https://www.arduino.cc/)
+- [Adafruit NeoPixel Library](https://github.com/adafruit/Adafruit_NeoPixel)
