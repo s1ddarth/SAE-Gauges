@@ -1,28 +1,44 @@
-#include <SPI.h>
-#include <TFT_eSPI.h>
-#include <gauge.h>
+#include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 
-const int hallSensorPin = 4;
+#define PIN_NEOPIXEL 48
+#define NUM_PIXELS 1
 
-// Define the TFT display instance
-TFT_eSPI tft = TFT_eSPI(); 
+Adafruit_NeoPixel pixels(NUM_PIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 
 void setup(){
   Serial.begin(115200);
   delay(1000);
+  
+  pixels.begin();
+  pixels.show();
+  
   Serial.println("STARTING");
-  SPI.begin(TFT_SCLK, -1, TFT_MOSI, TFT_CS);
-  tft.init();
-  Serial.println("TFT INITIALIZED");
-  tft.fillScreen(TFT_WHITE);
-
+  Serial.println("LED initialized");
 }
 
 void loop() {
-  int sensorValue = analogRead(hallSensorPin);
+  // Red
+  pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+  pixels.show();
+  Serial.println("LED: Red");
+  delay(1000);
   
-  Serial.print("Hall effect sensor reading: ");
-  Serial.println(sensorValue);
-
-  delay(1000); // Pause at max speed
+  // Green
+  pixels.setPixelColor(0, pixels.Color(0, 255, 0));
+  pixels.show();
+  Serial.println("LED: Green");
+  delay(1000);
+  
+  // Blue
+  pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+  pixels.show();
+  Serial.println("LED: Blue");
+  delay(1000);
+  
+  // Off
+  pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+  pixels.show();
+  Serial.println("LED: Off");
+  delay(1000);
 }
