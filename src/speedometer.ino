@@ -1,17 +1,15 @@
 #include <Arduino.h>
 
-#define ONBOARD_LED 38
-// Onboard LED is GPIO 38
+const int hallPin = 2;
+const int ledPin = 13;  // built-in
 
-void setup(){
-  Serial.begin(115200);
-  delay(1000);
-  
-  Serial.println("STARTING");
+void setup() {
+  pinMode(hallPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-  int i = 1;
-  Serial.println("Looping: " + i);
-  delay(1000);
+  int val = digitalRead(hallPin);
+  digitalWrite(ledPin, val ? LOW : HIGH);
+  delay(10);
 }
